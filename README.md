@@ -176,7 +176,6 @@ UI flows manually tested:
 •	Gas fields returned as strings.
 •	“Status” field considered either pending | confirmed | failed.
 •	Timestamp is assumed to be ISO-compatible.
-________________________________________
 9. Closing Notes
 This codebase is structured the same way I would approach a lightweight internal blockchain dashboard:
 •	maintainable file layout
