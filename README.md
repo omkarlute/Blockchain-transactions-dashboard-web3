@@ -21,6 +21,7 @@ ________________________________________
 
 ✅ Task 1 — Transaction List
 Fully implemented with:
+________________________________________
 •	Transaction table showing
 hash, from, to, amount, status, timestamp
 •	Search with 300ms debounce
@@ -37,7 +38,7 @@ hash, from, to, amount, status, timestamp
 •	Real-time polling (15s) without UI flicker
 •	Smooth dark/light mode switching
 
-
+________________________________________
 ✅ Task 2 — Transaction Details + Create Form
 Transaction Details Drawer
 •	Full transaction breakdown
