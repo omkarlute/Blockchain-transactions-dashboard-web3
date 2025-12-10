@@ -1,5 +1,4 @@
-#Brainyprep.ai Transactions Dashboard
-
+brainyprep.ai Transactions Dashboard
 A compact blockchain-style transaction explorer and creation interface built for the assessment.
 The goal was to deliver a clean, reliable, and production-ready implementation of both required tasks.
 ________________________________________
@@ -17,7 +16,9 @@ Built with:
 •	LocalStorage persistence
 •	Optimistic UI updates
 ________________________________________
+
 2. Task Completion Details
+
 ✅ Task 1 — Transaction List
 Fully implemented with:
 •	Transaction table showing
@@ -35,6 +36,8 @@ hash, from, to, amount, status, timestamp
 •	CSV export
 •	Real-time polling (15s) without UI flicker
 •	Smooth dark/light mode switching
+
+
 ✅ Task 2 — Transaction Details + Create Form
 Transaction Details Drawer
 •	Full transaction breakdown
@@ -53,7 +56,68 @@ Transaction Creation Form
 •	Optimistic creation with rollback on error
 •	Toast notifications
 •	Auto-refresh after successful creation
-________________________________________
+
+3)Porject Setup:
+
+•	Backend Setup
+  1.Navigate to the backend directory:
+  cd backend
+  
+•	2. Install dependencies:
+  npm install
+
+•	3. Create a `.env` file:
+
+•	# On Windows (PowerShell):
+•	Copy-Item .env.example .env
+
+•	# On Mac/Linux:
+•	cp .env.example .env
+
+•	4. Update `.env` with your MongoDB connection string:
+•	```env
+•	MONGODB_URI=mongodb://localhost:27017/brainyprep-assessment
+•	# Or use MongoDB Atlas:
+•	# MONGODB_URI=mongodb+srv://username:password@cluster.mongodb.net/brainyprep-assessment
+•	```
+•	
+•	5. Ensure MongoDB is running (local or Atlas)
+•	
+•	6. Start the backend server:
+•	```bash
+•	npm run start:dev
+•	```
+•	
+•	The backend will run on `http://localhost:3000`
+•	
+•	### Frontend Setup
+•	
+•	1. Navigate to the frontend directory:
+•	```bash
+•	cd frontend
+•	```
+•	
+•	2. Install dependencies:
+•	```bash
+•	npm install
+•	```
+•	
+•	3. (Optional) Create a `.env.local` file:
+•	```bash
+•	# On Windows (PowerShell):
+•	Copy-Item .env.local.example .env.local
+•	# On Mac/Linux:
+•	cp .env.local.example .env.local
+•	```
+•	
+•	4. Start the development server:
+•	```bash
+•	npm run dev
+•	```
+•	
+•	The frontend will run on `http://localhost:3001`
+•	
+
 3. Architecture
 /app/transactions/page.tsx               — main dashboard
 /components/transactions/
@@ -128,4 +192,7 @@ This codebase is structured the same way I would approach a lightweight internal
 •	resilient against API inconsistencies
 •	polished theme and interaction patterns
 Everything required by the assessment is fully implemented and tested.
+
+
+
 
