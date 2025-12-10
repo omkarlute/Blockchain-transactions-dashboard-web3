@@ -1,0 +1,138 @@
+/* ----------------------------------------------------
+   THEME-AWARE GLASS CARD
+---------------------------------------------------- */
+.glass-card {
+  backdrop-filter: blur(22px);
+  transition: 0.3s ease;
+  border-radius: 1rem;
+}
+
+/* DARK GLASS */
+.dark .glass-card {
+  background: rgba(15, 23, 42, 0.55); /* slate-900 */
+  border: 1px solid rgba(6, 182, 212, 0.28); /* cyan glow */
+  color: white;
+}
+
+/* LIGHT GLASS */
+/* =========================================================================
+   LIGHT MODE — FULL PREMIUM WEB3 UPGRADE
+   ========================================================================= */
+:root:not(.dark) body {
+  background: linear-gradient(
+    135deg,
+    #eef7ff 0%,
+    #f5ecff 40%,
+    #ffffff 100%
+  );
+  color: #0f172a;
+}
+
+/* Glass panels (light mode) */
+:root:not(.dark) .glass-card {
+  background: rgba(255, 255, 255, 0.55);
+  backdrop-filter: blur(24px) saturate(160%);
+  border: 1px solid rgba(60, 160, 200, 0.25);
+  box-shadow:
+    0 4px 14px rgba(0, 0, 0, 0.06),
+    0 0 25px rgba(50, 150, 200, 0.15) inset;
+}
+
+/* Neon border (light mode) */
+:root:not(.dark) .neon-border {
+  box-shadow:
+    0 0 15px rgba(0, 170, 255, 0.35),
+    0 0 25px rgba(134, 65, 255, 0.25),
+    inset 0 0 15px rgba(0, 170, 255, 0.15);
+}
+
+/* Hover glow effect */
+:root:not(.dark) .hover-glow:hover {
+  box-shadow:
+    0 0 30px rgba(0, 170, 255, 0.4),
+    inset 0 0 20px rgba(0, 170, 255, 0.12);
+  transform: translateY(-2px);
+}
+
+/* Neon text upgrade */
+:root:not(.dark) .neon-text {
+  text-shadow:
+    0 0 12px rgba(0, 200, 255, 0.55),
+    0 0 20px rgba(134, 65, 255, 0.35);
+}
+
+/* High-contrast text for light mode */
+:root:not(.dark) .text-primary-light {
+  color: #0e3a5f !important;
+}
+
+:root:not(.dark) .text-neutral-light {
+  color: #334155 !important;
+}
+
+/* Status badges (light mode) */
+:root:not(.dark) .badge-green {
+  background: rgba(34,197,94,0.20);
+  color: #166534;
+  border: 1px solid rgba(34,197,94,0.35);
+}
+
+:root:not(.dark) .badge-yellow {
+  background: rgba(234,179,8,0.20);
+  color: #92400e;
+  border: 1px solid rgba(234,179,8,0.35);
+}
+
+:root:not(.dark) .badge-red {
+  background: rgba(239,68,68,0.20);
+  color: #991b1b;
+  border: 1px solid rgba(239,68,68,0.35);
+}
+
+
+
+/* ----------------------------------------------------
+   NEON BORDER
+---------------------------------------------------- */
+.neon-border {
+  transition: 0.3s ease;
+}
+
+.dark .neon-border {
+  box-shadow:
+    0 0 22px rgba(6,182,212,0.5),
+    inset 0 0 18px rgba(6,182,212,0.15);
+}
+
+.light .neon-border {
+  box-shadow:
+    0 0 22px rgba(6,182,212,0.35),
+    inset 0 0 18px rgba(6,182,212,0.10);
+}
+
+/* ----------------------------------------------------
+   HOVER GLOW
+---------------------------------------------------- */
+.hover-glow:hover {
+  transform: translateY(-2px);
+}
+
+.dark .hover-glow:hover {
+  box-shadow: 0 0 32px rgba(6,182,212,0.7);
+}
+
+.light .hover-glow:hover {
+  box-shadow: 0 0 24px rgba(6,182,212,0.45);
+}
+
+/* ----------------------------------------------------
+   ANIMATIONS
+---------------------------------------------------- */
+@keyframes slide-up {
+  from { opacity: 0; transform: translateY(22px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.slide-up {
+  animation: slide-up .6s ease-out forwards;
+}
