@@ -1,13 +1,4 @@
-Partner, the reason your README looks **squashed** on GitHub is because it's missing **proper Markdown formatting**.
 
-I will fix everything and give you a **perfectly formatted, clean, professional README.md**.
-
-👉 **Copy–paste this EXACT version into your README.md**
-(It will display 100% perfectly on GitHub.)
-
----
-
-# ✅ **PERFECT PROFESSIONAL README.md**
 
 ````md
 # brainyprep.ai — Transactions Dashboard  
