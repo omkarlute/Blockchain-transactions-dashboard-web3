@@ -21,11 +21,14 @@ export const transactionsAPI = {
 };
 
 /* ---------------- STATS ---------------- */
+// Stats API — ✅ FIXED
 export const statsAPI = {
-  getStats: () => api.get("/api/stats"),
+  getStats: () =>
+    axios.get(`${API_BASE_URL}/api/stats`),
 };
 
-/* ---------------- INIT ---------------- */
+// Init API — ✅ FIXED
 export const initAPI = {
-  seed: () => api.post("/api/init"),
+  seed: () =>
+    axios.post(`${API_BASE_URL}/api/init`),
 };
