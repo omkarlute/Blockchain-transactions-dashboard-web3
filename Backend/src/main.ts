@@ -5,17 +5,13 @@ import { AppModule } from './app.module';
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
 
-  // Enable CORS for frontend
+  // ✅ Enable CORS (ALLOW ALL — SAFE FOR DEMO)
   app.enableCors({
-  origin: [
-    "http://localhost:3000",
-    "https://brainyprep-ai-technical-assesment-1ipxzdi2r.vercel.app",
-  ],
-  methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
-  credentials: true,
-});
+    origin: '*',
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  });
 
-  // Global validation pipe
+  // Global validation
   app.useGlobalPipes(
     new ValidationPipe({
       whitelist: true,
@@ -24,13 +20,13 @@ async function bootstrap() {
     }),
   );
 
-  // API prefix
+  // ✅ API prefix
   app.setGlobalPrefix('api');
 
   const port = process.env.PORT || 3000;
-await app.listen(process.env.PORT || 3000);
-  console.log(`🚀 Backend server running on http://localhost:${port}`);
+  await app.listen(port);
+
+  console.log(`🚀 Backend running on port ${port}`);
 }
 
 bootstrap();
-
