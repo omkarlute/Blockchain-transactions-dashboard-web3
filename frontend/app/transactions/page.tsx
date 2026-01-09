@@ -93,7 +93,7 @@ export default function TransactionsPage() {
         const res = await transactionsAPI.getAll();
         raw = res?.data;
       } else {
-        const r = await fetch("/api/transactions");
+        
         if (!r.ok) throw new Error(`HTTP ${r.status}`);
         const contentType = r.headers.get("content-type") ?? "";
         if (!contentType.includes("application/json")) {
