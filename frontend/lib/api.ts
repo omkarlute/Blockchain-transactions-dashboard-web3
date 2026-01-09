@@ -1,42 +1,25 @@
 import axios from "axios";
 
-const RAW_BASE_URL = process.env.NEXT_PUBLIC_API_URL;
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL;
 
-if (!RAW_BASE_URL) {
+if (!API_BASE_URL) {
   throw new Error("NEXT_PUBLIC_API_URL is not defined");
 }
 
-// Force absolute origin (prevents Next.js interception)
-const API_BASE_URL = RAW_BASE_URL.replace(/\/$/, "");
-
+// Axios instance
 const api = axios.create({
-  baseURL: API_BASE_URL,
+  baseURL: API_BASE_URL.replace(/\/$/, ""),
   headers: {
     "Content-Type": "application/json",
   },
-  withCredentials: false,
+  timeout: 10000,
 });
 
-// Transactions API — FULL PATH
+// ✅ ONLY VALID BACKEND ROUTES
 export const transactionsAPI = {
-  getAll: () =>
-    axios.get(`${API_BASE_URL}/api/transactions`),
-
-  getById: (id: string) =>
-    axios.get(`${API_BASE_URL}/api/transactions/${id}`),
-
-  create: (data: any) =>
-    axios.post(`${API_BASE_URL}/api/transactions`, data),
+  getAll: () => api.get("/api/transactions"),
+  getById: (id: string) => api.get(`/api/transactions/${id}`),
+  create: (data: any) => api.post("/api/transactions", data),
 };
 
-// Stats API — FULL PATH
-export const statsAPI = {
-  getStats: () =>
-    axios.get(`${API_BASE_URL}/stats`),
-};
-
-// Init API — FULL PATH
-export const initAPI = {
-  seed: () =>
-    axios.post(`${API_BASE_URL}/init`),
-};
+export default api;
