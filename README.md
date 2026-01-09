@@ -6,7 +6,7 @@
 A compact blockchain-style transaction explorer and transaction creation dashboard.
 Designed to demonstrate clean architecture, predictable state management, and a Web3-inspired user experience.
 
-🌐 **Live Demo:** [https://YOUR-VERCEL-LINK.vercel.app  ](https://blockchain-web3-explorer.vercel.app/dashboard)
+🌐 **Live Demo:** (https://blockchain-web3-explorer.vercel.app/dashboard)
 📦 **Tech Stack:** Next.js (App Router), TypeScript, Tailwind CSS, shadcn/ui, MongoDB
 
 ---
