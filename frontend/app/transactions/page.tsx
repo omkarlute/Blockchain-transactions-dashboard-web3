@@ -28,11 +28,7 @@ export type Tx = {
 // Normalizes raw transaction data from API into our Tx type
 
 // Truncate long addresses (show first 6 and last 4 chars)
-export const truncateAddr = (addr?: string) => {
-  if (!addr) return "";
-  if (addr.length <= 12) return addr;
-  return `${addr.slice(0, 6)}...${addr.slice(-4)}`;
-};
+
 // Safely converts string to lowercase, handling null/undefined
 export const safeLower = (s?: string) => (s ?? "").toString().toLowerCase();
 // Formats timestamp to relative time (e.g., "2 hours ago", "Jan 15, 2024")
