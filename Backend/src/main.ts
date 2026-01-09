@@ -7,9 +7,13 @@ async function bootstrap() {
 
   // Enable CORS for frontend
   app.enableCors({
-    origin: ['http://localhost:3001', 'http://localhost:3000'],
-    credentials: true,
-  });
+  origin: [
+    "http://localhost:3000",
+    "https://brainyprep-ai-technical-assesment-1ipxzdi2r.vercel.app",
+  ],
+  methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+  credentials: true,
+});
 
   // Global validation pipe
   app.useGlobalPipes(
@@ -24,7 +28,7 @@ async function bootstrap() {
   app.setGlobalPrefix('api');
 
   const port = process.env.PORT || 3000;
-  await app.listen(port);
+await app.listen(process.env.PORT || 3000);
   console.log(`🚀 Backend server running on http://localhost:${port}`);
 }
 
