@@ -1,8 +1,11 @@
 import axios from "axios";
 
-// Correct backend URL (important)
-const API_BASE_URL =
-  process.env.NEXT_PUBLIC_API_URL || "http://localhost:3000";
+// Correct backend URL
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL;
+
+if (!API_BASE_URL) {
+  console.warn("NEXT_PUBLIC_API_URL is not defined");
+}
 
 // Create axios instance
 const api = axios.create({
@@ -13,16 +16,16 @@ const api = axios.create({
   timeout: 10000,
 });
 
-// Transactions API
+// Transactions API (NOTE THE /api PREFIX)
 export const transactionsAPI = {
-  getAll: () => api.get("/transactions"),
-  getById: (id: string) => api.get(`/transactions/${id}`),
+  getAll: () => api.get("/api/transactions"),
+  getById: (id: string) => api.get(`/api/transactions/${id}`),
   create: (data: {
     toAddress: string;
     amount: string;
     gasLimit?: string;
     gasPrice?: string;
-  }) => api.post("/transactions", data),
+  }) => api.post("/api/transactions", data),
 };
 
 // Init API
