@@ -8,6 +8,7 @@ import { transactionsAPI } from "@/lib/api";
 import { TransactionDetails } from "@/components/transactions/TransactionDetails";
 import { CreateTransactionForm } from "@/components/transactions/CreateTransactionForm";
 import { normalizeTx } from "@/lib/transactions/normalizeTx";
+import { truncateAddr } from "@/lib/utils/truncateAddr";
 
 
 /* ----------------------------------------------------
