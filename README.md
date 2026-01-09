@@ -1,7 +1,7 @@
 
 ---
 
-# 🧠 brainyprep.ai — Transactions Dashboard
+# 🧠 Blockchain Transactions Dashboard
 
 A compact blockchain-style transaction explorer & creator interface built for the assessment.
 Focused on reliability, performance, clean UI, and a Web3-first experience.
