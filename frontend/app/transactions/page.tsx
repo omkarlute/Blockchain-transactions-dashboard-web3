@@ -232,48 +232,66 @@ const fetchTxs = async (opts?: { silent?: boolean }) => {
  
   // Handles optimistic UI update for create, with rollback on error
   const createWithOptimism = async (input: any) => {
-    const tempId = `temp_${Date.now()}`;
-    const optimisticTx: Tx = {
-      id: tempId,
-      hash: input?.hash ?? "",
-      from: input?.from ?? input?.fromAddress ?? input?.sender ?? "",
-      to: input?.to ?? input?.toAddress ?? input?.recipient ?? "",
-      amount: input?.amount ?? input?.value ?? "0",
-      status: "pending",
-      timestamp: new Date().toISOString(),
-      __optimistic__: true,
-    };
-    setTxs((prev) => [optimisticTx, ...prev]);
-    pushToast("Submitting transaction…", "success");
-    try {
-      let created: any;
-const res = await transactionsAPI.create(input);
-created = res.data;
+  const tempId = `temp_${Date.now()}`;
 
-        if (!r.ok) throw new Error(`HTTP ${r.status}`);
-        created = await r.json();
-      }
-      const normalized = normalizeTx(created?.data ?? created);
-      setTxs((prev) =>
-        prev.map((t) =>
-          t.id === tempId ? { ...normalized, __optimistic__: false } : t
-        )
-      );
-      pushToast(`Created tx ${normalized.hash ?? ""}`, "success");
-      return normalized;
-    } catch (err: any) {
-      setTxs((prev) =>
-        prev.map((t) => (t.id === tempId ? { ...t, status: "failed" } : t))
-      );
-      pushToast(err?.message ?? "Create failed", "error");
-      // Remove failed optimistic entry after toast
-      setTimeout(
-        () => setTxs((prev) => prev.filter((t) => t.id !== tempId)),
-        2500
-      );
-      throw err;
-    }
+  const optimisticTx: Tx = {
+    id: tempId,
+    hash: input?.hash ?? "",
+    from: input?.from ?? input?.fromAddress ?? input?.sender ?? "",
+    to: input?.to ?? input?.toAddress ?? input?.recipient ?? "",
+    amount: input?.amount ?? input?.value ?? "0",
+    status: "pending",
+    timestamp: new Date().toISOString(),
+    __optimistic__: true,
   };
+
+  setTxs((prev) => [optimisticTx, ...prev]);
+  pushToast("Submitting transaction…", "success");
+
+  try {
+    let created: any;
+
+    if (transactionsAPI?.create) {
+      const res = await transactionsAPI.create(input);
+      created = res?.data ?? res;
+    } else {
+      const r = await fetch("/api/transactions", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(input),
+      });
+
+      if (!r.ok) throw new Error(`HTTP ${r.status}`);
+      created = await r.json();
+    }
+
+    const normalized = normalizeTx(created?.data ?? created);
+
+    setTxs((prev) =>
+      prev.map((t) =>
+        t.id === tempId ? { ...normalized, __optimistic__: false } : t
+      )
+    );
+
+    pushToast(`Created tx ${normalized.hash ?? ""}`, "success");
+    return normalized;
+  } catch (err: any) {
+    setTxs((prev) =>
+      prev.map((t) =>
+        t.id === tempId ? { ...t, status: "failed" } : t
+      )
+    );
+
+    pushToast(err?.message ?? "Create failed", "error");
+
+    setTimeout(() => {
+      setTxs((prev) => prev.filter((t) => t.id !== tempId));
+    }, 2500);
+
+    throw err;
+  }
+};
+
   // Handler for successful create (refetch and toast)
   const handleCreated = async (created: any | null) => {
     await fetchTxs();
